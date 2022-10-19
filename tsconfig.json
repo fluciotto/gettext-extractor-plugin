@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "outDir": "./build",
+    "resolveJsonModule": true,
+    "rootDir": "./src",
+    "target": "ES2018"
+  },
+  "include": ["src/**/*.ts"]
+}

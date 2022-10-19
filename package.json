@@ -1,0 +1,22 @@
+{
+  "name": "gettext-extractor-plugin",
+  "version": "1.0.0",
+  "description": "A Webpack plugin for gettext extraction",
+  "main": "index.js",
+  "repository": "git@github.com:fluciotto/gettext-extractor-plugin.git",
+  "author": "exovii <iivoxe@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "peerDependencies": {
+    "webpack": "^4"
+  },
+  "devDependencies": {
+    "@types/webpack": "^4"
+  },
+  "dependencies": {
+    "gettext-extractor": "^3.5.4",
+    "schema-utils": "^4.0.0"
+  }
+}
