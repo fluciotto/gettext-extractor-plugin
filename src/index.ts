@@ -2,7 +2,6 @@ import { GettextExtractor, JsExtractors } from "gettext-extractor";
 import { JSONSchema7 } from "json-schema";
 import path from "path";
 import { validate } from "schema-utils";
-import webpack from "webpack";
 
 const schema: JSONSchema7 = {
   type: "object",
@@ -25,13 +24,12 @@ const schema: JSONSchema7 = {
   additionalProperties: false,
 };
 
-class GettextExtractorPlugin extends webpack.Plugin {
+class GettextExtractorPlugin {
   options: any;
   extractor: GettextExtractor;
   parser: any;
 
   constructor(options: any) {
-    super();
     validate(schema, options, {
       name: "Gettext Extractor Plugin",
       baseDataPath: "options",

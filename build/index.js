@@ -1,13 +1,18 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const gettext_extractor_1 = require("gettext-extractor");
-const path_1 = __importDefault(require("path"));
-const schema_utils_1 = require("schema-utils");
-const webpack_1 = __importDefault(require("webpack"));
-const schema = {
+var gettext_extractor_1 = require("gettext-extractor");
+var path_1 = require("path");
+var schema_utils_1 = require("schema-utils");
+var schema = {
     type: "object",
     properties: {
         callees: {
@@ -27,9 +32,8 @@ const schema = {
     required: ["callees", "output"],
     additionalProperties: false,
 };
-class GettextExtractorPlugin extends webpack_1.default.Plugin {
-    constructor(options) {
-        super();
+var GettextExtractorPlugin = /** @class */ (function () {
+    function GettextExtractorPlugin(options) {
         (0, schema_utils_1.validate)(schema, options, {
             name: "Gettext Extractor Plugin",
             baseDataPath: "options",
@@ -45,25 +49,29 @@ class GettextExtractorPlugin extends webpack_1.default.Plugin {
             }),
         ]);
     }
-    apply(compiler) {
-        compiler.hooks.done.tap("GettextExtractorPlugin", (stats) => {
+    GettextExtractorPlugin.prototype.apply = function (compiler) {
+        var _this = this;
+        compiler.hooks.done.tap("GettextExtractorPlugin", function (stats) {
             try {
-                const projectFiles = [...stats.compilation.fileDependencies].filter((d) => !d.includes(path_1.default.join(compiler.options.context, "node_modules")));
-                projectFiles.forEach((f) => {
+                var projectFiles = __spreadArray([], stats.compilation.fileDependencies, true).filter(function (d) {
+                    return !d.includes(path_1.default.join(compiler.options.context, "node_modules"));
+                });
+                projectFiles.forEach(function (f) {
                     try {
-                        this.parser.parseFile(path_1.default.relative(compiler.options.context, f));
+                        _this.parser.parseFile(path_1.default.relative(compiler.options.context, f));
                     }
                     catch (e) {
                         console.log(e);
                     }
                 });
                 // console.log(this.extractor.getStats())
-                this.extractor.savePotFile(this.options.output, this.options.headers);
+                _this.extractor.savePotFile(_this.options.output, _this.options.headers);
             }
             catch (e) {
                 console.error(e);
             }
         });
-    }
-}
+    };
+    return GettextExtractorPlugin;
+}());
 module.exports = GettextExtractorPlugin;
