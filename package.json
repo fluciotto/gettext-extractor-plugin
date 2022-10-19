@@ -1,9 +1,10 @@
 {
   "name": "gettext-extractor-plugin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Webpack plugin for gettext extraction",
   "main": "build/index.js",
-  "repository": "git@github.com:fluciotto/gettext-extractor-plugin.git",
+  "repository": "fluciotto/gettext-extractor-plugin.git",
+  "bugs": "https://github.com/fluciotto/gettext-extractor-plugin/issues",
   "author": "exovii",
   "license": "MIT",
   "engines": {
