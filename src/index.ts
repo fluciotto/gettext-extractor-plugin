@@ -1,6 +1,6 @@
 import { GettextExtractor, JsExtractors } from "gettext-extractor";
 import { JSONSchema7 } from "json-schema";
-import path from "path";
+import { join, relative } from "path";
 import { validate } from "schema-utils";
 
 const schema: JSONSchema7 = {
@@ -51,11 +51,11 @@ class GettextExtractorPlugin {
       try {
         const projectFiles = [...stats.compilation.fileDependencies].filter(
           (d) =>
-            !d.includes(path.join(compiler.options.context, "node_modules"))
+            !d.includes(join(compiler.options.context, "node_modules"))
         );
         projectFiles.forEach((f) => {
           try {
-            this.parser.parseFile(path.relative(compiler.options.context, f));
+            this.parser.parseFile(relative(compiler.options.context, f));
           } catch (e) {
             console.log(e);
           }
