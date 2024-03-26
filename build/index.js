@@ -46,10 +46,15 @@ class GettextExtractorPlugin {
                 const projectFiles = [...stats.compilation.fileDependencies].filter((d) => !d.includes((0, path_1.join)(compiler.options.context, "node_modules")));
                 projectFiles.forEach((f) => {
                     try {
-                        this.parser.parseFile((0, path_1.relative)(compiler.options.context, f));
+                        const filename = (0, path_1.relative)(compiler.options.context, f);
+                        if (!filename)
+                            return;
+                        this.parser.parseFile(filename);
                     }
                     catch (e) {
-                        console.log(e);
+                        if (e.code !== "EISDIR") {
+                            console.log(e);
+                        }
                     }
                 });
                 // console.log(this.extractor.getStats())

@@ -50,14 +50,17 @@ class GettextExtractorPlugin {
     compiler.hooks.done.tap("GettextExtractorPlugin", (stats: any) => {
       try {
         const projectFiles = [...stats.compilation.fileDependencies].filter(
-          (d) =>
-            !d.includes(join(compiler.options.context, "node_modules"))
+          (d) => !d.includes(join(compiler.options.context, "node_modules"))
         );
         projectFiles.forEach((f) => {
           try {
-            this.parser.parseFile(relative(compiler.options.context, f));
+            const filename = relative(compiler.options.context, f);
+            if (!filename) return;
+            this.parser.parseFile(filename);
           } catch (e) {
-            console.log(e);
+            if ((e as any).code !== "EISDIR") {
+              console.log(e);
+            }
           }
         });
         // console.log(this.extractor.getStats())

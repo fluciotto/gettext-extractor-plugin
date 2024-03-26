@@ -1,6 +1,6 @@
 {
   "name": "gettext-extractor-plugin",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Webpack plugin for gettext extraction",
   "main": "build/index.js",
   "repository": "fluciotto/gettext-extractor-plugin.git",
@@ -19,5 +19,8 @@
   "dependencies": {
     "gettext-extractor": "^3.5.4",
     "schema-utils": "^4.0.0"
+  },
+  "scripts": {
+    "build": "tsc"
   }
 }
