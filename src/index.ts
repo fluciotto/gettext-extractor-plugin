@@ -50,7 +50,9 @@ class GettextExtractorPlugin {
     compiler.hooks.done.tap("GettextExtractorPlugin", (stats: any) => {
       try {
         const projectFiles = [...stats.compilation.fileDependencies].filter(
-          (d) => !d.includes(join(compiler.options.context, "node_modules"))
+          (d) =>
+            !d.includes(compiler.options.context) &&
+            !d.includes(join(compiler.options.context, "node_modules"))
         );
         projectFiles.forEach((f) => {
           try {

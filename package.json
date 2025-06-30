@@ -1,8 +1,8 @@
 {
   "name": "gettext-extractor-plugin",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A Webpack plugin for gettext extraction",
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "repository": "fluciotto/gettext-extractor-plugin.git",
   "bugs": "https://github.com/fluciotto/gettext-extractor-plugin/issues",
   "author": "exovii",
@@ -11,10 +11,10 @@
     "node": ">=10.0.0"
   },
   "peerDependencies": {
-    "webpack": "^4"
+    "webpack": "^4 || ^5"
   },
   "devDependencies": {
-    "@types/webpack": "^4"
+    "@types/webpack": "^4 || ^5"
   },
   "dependencies": {
     "gettext-extractor": "^3.5.4",
