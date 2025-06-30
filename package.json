@@ -1,6 +1,6 @@
 {
   "name": "gettext-extractor-plugin",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A Webpack plugin for gettext extraction",
   "main": "dist/index.js",
   "repository": "fluciotto/gettext-extractor-plugin.git",
